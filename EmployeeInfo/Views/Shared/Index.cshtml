@@ -1,0 +1,58 @@
+﻿@model IEnumerable<EmployeeInfo.Models.Employee>
+
+<div class="text-center">
+
+    <table class="table">
+        <tr>
+            <th>BYU ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>BYU Name</th>
+            <th>Phone Number</th>
+            <th>Email Address</th>
+            <th>Gender</th>
+            <th>Program ID</th>
+            <th>Citizenship ID</th>
+            <th>Date Start Grad Tuition</th>
+            <th>Notes</th>
+        </tr>
+        @foreach (var item in Model)
+            {
+    <tr>
+        <td>
+            @Html.DisplayTextFor(modelItem => item.BYUID)
+        </td>
+        <td>
+            @Html.DisplayTextFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayTextFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayTextFor(modelItem => item.BYUName)
+        </td>
+        <td>
+            @Html.DisplayTextFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayTextFor(modelItem => item.EmailAddress)
+        </td>
+        <td>
+            @Html.DisplayTextFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayTextFor(modelItem => item.ProgramID)
+        </td>
+        <td>
+            @Html.DisplayTextFor(modelItem => item.CitizenshipID)
+        </td>
+        <td>
+            @Html.DisplayTextFor(modelItem => item.DateStartGradTuition)
+        </td>
+        <td>
+            @Html.DisplayTextFor(modelItem => item.Notes)
+        </td>
+    </tr>
+            }
+    </table>
+</div>
