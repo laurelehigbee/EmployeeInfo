@@ -1,0 +1,64 @@
+﻿@model IEnumerable<EmployeeInfo.Models.Employee>
+
+<div class="text-center">
+
+    <table class="table table-striped">
+        <tr>
+            <th>BYU ID</th>
+            <th>Employee Name</th>
+            <th>Phone Number</th>
+            <th>Email Address</th>
+            <th>Program</th>
+            <th>Gender</th>
+            <th>Tags</th>
+        </tr>
+        @foreach (var item in Model)
+            {
+    <tr>
+        <td>
+            @item.BYUID
+        </td>
+        
+            @if (String.IsNullOrEmpty(item.BYUName))
+                {
+                    <td>@item.FirstName @item.LastName</td>
+                }
+                else
+                {
+                    <td>@item.BYUName @item.LastName</td>
+                }
+        <td>
+            @item.PhoneNumber
+        </td>
+        <td>
+            @item.EmailAddress
+        </td>
+        <td>
+            @item.ProgramID
+        </td>
+        @if (item.Gender)
+            {
+            <td>M</td>
+            }
+            else
+            {
+                <td>F</td>
+            }
+        @if (item.CitizenshipID == 0)
+                {
+                    <td></td>
+                }
+            else
+                {
+                    <td>
+                        <img data-toggle="tooltip"
+                             data-placement="right"
+                             title="Indicates an International Student"
+                             style="width: 20px"
+                             src="img/world.png" />
+                    </td>
+                }
+        </tr>
+            }
+    </table>
+</div>

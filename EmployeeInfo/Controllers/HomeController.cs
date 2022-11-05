@@ -19,5 +19,19 @@ namespace EmployeeInfo.Controllers
             return View(context.GetAllEmployees());
         }
 
+        public IActionResult Metrics()
+        {
+            return View();
+        }
+
+        public IActionResult Jobs()
+        {
+            return View();
+        }
+
+        public IActionResult EmployeeDetails()
+        {
+            return View();
+        }
     }
 }
