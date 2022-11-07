@@ -41,5 +41,15 @@ namespace EmployeeInfo.Controllers
         {
             return File(System.Text.Encoding.ASCII.GetBytes(GridHtml), "application/vnd.ms-excel", "EmployeeInfo.xls");
         }
+
+        public JsonResult GetPieChartJSON()
+        {
+            List<int> list = new List<int>();
+
+            return Json(new { JSONList = list });
+
+
+        }
+
     }
 }
