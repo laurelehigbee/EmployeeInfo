@@ -35,5 +35,12 @@ namespace EmployeeInfo.Controllers
         {
             return View();
         }
+
+        public JsonResult GetPieChartJSON()
+        {
+            List<int> list = new List<int>();
+
+            return Json(new { JSONList = list });
+        }
     }
 }
