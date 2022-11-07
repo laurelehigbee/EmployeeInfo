@@ -16,6 +16,8 @@ namespace EmployeeInfo.Controllers
         public IActionResult Index() //return get request for the View Movies table
         {
             EmployeesDbContext context = HttpContext.RequestServices.GetService(typeof(EmployeeInfo.Models.EmployeesDbContext)) as EmployeesDbContext;
+            StudentJobDbContext context2 = HttpContext.RequestServices.GetService(typeof(EmployeeInfo.Models.StudentJobDbContext)) as StudentJobDbContext;
+
 
             return View(context.GetAllEmployees());
         }
