@@ -1,6 +1,24 @@
 ﻿@model IEnumerable<EmployeeInfo.Models.Employee>
+@*@model IEnumerable<EmployeeInfo.Models.StudentJob>*@
 
 <div class="text-center">
+
+    <div class="text-center">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Flagged Items Key:</h3>
+            </div>
+
+            <div class="col-md-4" style="background-color:#f78080; padding:8px 0 0 0;">
+                <h5>Authorization to Work Incomplete</h5>
+            </div>
+
+            <div class="col-md-4" style="background-color: #ffff84; padding: 8px 0 0 0; ">
+                <h5>Survey Sent But Incomplete</h5>
+            </div>
+
+        </div>
+    </div>
 
     <table class="table table-striped">
         <tr>
@@ -15,49 +33,50 @@
         @foreach (var item in Model)
             {
     <tr>
-        <td>
-            @item.BYUID
-        </td>
         
-            @if (String.IsNullOrEmpty(item.BYUName))
+            <td>
+                @item.BYUID
+            </td>
+        
+                @if (String.IsNullOrEmpty(item.BYUName))
+                    {
+                        <td>@item.FirstName @item.LastName</td>
+                    }
+                    else
+                    {
+                        <td>@item.BYUName @item.LastName</td>
+                    }
+            <td>
+                @item.PhoneNumber
+            </td>
+            <td>
+                @item.EmailAddress
+            </td>
+            <td>
+                @item.ProgramID
+            </td>
+            @if (item.Gender)
                 {
-                    <td>@item.FirstName @item.LastName</td>
+                <td>M</td>
                 }
                 else
                 {
-                    <td>@item.BYUName @item.LastName</td>
+                    <td>F</td>
                 }
-        <td>
-            @item.PhoneNumber
-        </td>
-        <td>
-            @item.EmailAddress
-        </td>
-        <td>
-            @item.ProgramID
-        </td>
-        @if (item.Gender)
-            {
-            <td>M</td>
-            }
-            else
-            {
-                <td>F</td>
-            }
-        @if (item.CitizenshipID == 0)
-                {
-                    <td></td>
-                }
-            else
-                {
-                    <td>
-                        <img data-toggle="tooltip"
-                             data-placement="right"
-                             title="Indicates an International Student"
-                             style="width: 20px"
-                             src="img/world.png" />
-                    </td>
-                }
+            @if (item.CitizenshipID == 0)
+                    {
+                        <td></td>
+                    }
+                else
+                    {
+                        <td>
+                            <img data-toggle="tooltip"
+                                 data-placement="right"
+                                 title="Indicates an International Student"
+                                 style="width: 20px"
+                                 src="img/world.png" />
+                        </td>
+                    }
         </tr>
             }
     </table>
