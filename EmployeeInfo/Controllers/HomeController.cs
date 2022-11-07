@@ -35,5 +35,11 @@ namespace EmployeeInfo.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Export(string GridHtml)
+        {
+            return File(System.Text.Encoding.ASCII.GetBytes(GridHtml), "application/vnd.ms-excel", "EmployeeInfo.xls");
+        }
     }
 }
