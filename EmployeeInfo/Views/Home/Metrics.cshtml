@@ -1,41 +1,104 @@
-﻿@{
-    ViewData["Title"] = "Metrics";
-}
+﻿
+@model WageChange
 <div class="text-center">
     <h1 class="display-4">Metrics and Data Visualizations</h1>
 </div>
 
+<style type="text/css">
 
+    #chart-container {
+        height: 100%;
+        width: 100%;
+        font-size: 0;
+    }
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="card">
-            <h5>Placeholder for Positions Graph</h5>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card">
-            <h5>Placeholder for Gender Graph</h5>
-        </div>
-    </div>
+    #chartdiv, #chartdiv2 {
+        display: inline-block;
+        *display: inline;
+        zoom: 1;
+        vertical-align: top;
+        font-size: 12px;
+    }
+
+    #chartdiv {
+        width: 50%;
+    }
+
+    #chartdiv2 {
+        width: 50%;
+    }
+</style>
+
+<div id="chart-container">
+    <div id="chartdiv"></div>
+    <div id="chartdiv2"></div>
 </div>
 
+
+@section scripts{
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(DrawonLoad);
+        function DrawonLoad() {
+            $(function () {
+                $.ajax({
+                    type: 'Get',
+                    url: '/Home/GetPieChartJSON',
+                    success: function (chartsdata) {
+                        var data = new google.visualization.DataTable();
+                        data.addColumn('string', 'CategoryName')
+                        data.addColumn('number', 'PostCount');
+                        data.addRow(["Female", 4]);
+                        data.addRow(["Male", 6]);
+                        var chart = new google.visualization.PieChart(document.getElementById('chartdiv'));
+                        chart.draw(data, {
+                            title: "Gender",
+                            position: "top",
+                            fontsize: "14px",
+                            is3D: true
+                        });
+
+                        var dataTwo = new google.visualization.DataTable();
+                        dataTwo.addColumn('string', 'CategoryName')
+                        dataTwo.addColumn('number', 'PostCount');
+                        dataTwo.addRow(["RA", 5]);
+                        dataTwo.addRow(["TA", 5]);
+                        var chartTwo = new google.visualization.PieChart(document.getElementById('chartdiv2'));
+                        chartTwo.draw(dataTwo, {
+                            title: "Position",
+                            position: "top",
+                            fontsize: "14px",
+                            is3D: true
+                        });
+                    }
+                })
+            });
+        }</script>
+}
+
+
+
 <div class="row">
     <div class="col-md-4">
         <div class="card">
-            <h5>Placeholder for Average wage</h5>
+            <h5>Average Wage: $14.73</h5>
         </div>
     </div>
 
     <div class="col-md-4">
         <div class="card">
-            <h5>Placeholder for Total count</h5>
+            <h5>Total Employee Count: 10</h5>
         </div>
     </div>
 
     <div class="col-md-4">
         <div class="card">
-            <h5>Placeholder for Total Count by position</h5>
+            <h5>Total Employee Count by Position:</h5>
+            <p>TA: 3</p>
+            <p>RA: 2</p>
+            <p>Office: 2</p>
+            <p>Student Instructor: 3</p>
+            <p>Other: 2</p>
         </div>
     </div>
 
