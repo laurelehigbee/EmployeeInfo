@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using EmployeeInfo.Models;
 using System.Diagnostics;
+using System.IO;
 
 namespace EmployeeInfo.Controllers
 {
@@ -35,5 +36,13 @@ namespace EmployeeInfo.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Export(string GridHtml)
+        {
+            return File(System.Text.Encoding.ASCII.GetBytes(GridHtml), "application/vnd.ms-excel", "EmployeeInfo.xls");
+        }
+
+        
     }
 }
